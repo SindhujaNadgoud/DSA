@@ -1,0 +1,31 @@
+The problem solution goes smthng like , 
+
+
+The formula is after contructiong a graph, we keep removing leaves from outside ,and come into the center nodes as answers
+
+
+1. construct the graph in the form of an adjaceny list
+2. add to the leaves arraylist if neightbour count =1 
+3. As there can be only 1 or 2 centroids in any given graph , 
+
+centroids=number of nodes 
+while( centroids >2)
+{
+        c-=leaves ; //as leaves cannot be centroids anyways 
+        for(int leaf : leaves)
+        {
+            //get neighbours of leaf 
+            x=arraylist.get(leaf).iterator().next();
+            //get elemets correspsodng to x , remove leaf from x
+            arraylist.get(x).remove(leaf)
+            newsleaves=[]
+            //after removig , if length ==1 , add it to a newleaves arraylist
+            if(arraylist.get(x).size()==1)
+                newleaves.add(x)
+
+        }
+    leaves=newleaves;
+
+
+}
+

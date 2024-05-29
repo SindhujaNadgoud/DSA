@@ -1,0 +1,30 @@
+We note that this problem has an optimal substructure property, which is the key piece in solving any Dynamic Programming problems. In other words, the optimal solution can be constructed from optimal solutions of its subproblems.
+It's about finding minimum number of coins for amounts upto i
+
+F(i) is computed as min⁡j=0…n−1F(i−cj)+1\min_{j=0 \ldots n-1}{F(i -c_j)} + 1min 
+j=0…n-1 F(i−cj)+1
+​
+
+
+public class Solution {
+  public int coinChange(int[] coins, int amount) {
+    int max = amount + 1;
+    int[] dp = new int[amount + 1];
+    Arrays.fill(dp, max);
+    dp[0] = 0;
+    for (int i = 1; i <= amount; i++) {
+      for (int j = 0; j < coins.length; j++) {
+        if (coins[j] <= i) {
+          dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+        }
+      }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+  }
+}
+
+
+Time complexity : O(S∗n)O(S*n)O(S∗n).
+On each step the algorithm finds the next F(i)F(i)F(i) in nnn iterations, where 1≤i≤S1\leq i \leq S1≤i≤S. Therefore in total the iterations are S∗nS*nS∗n.
+Space complexity : O(S)O(S)O(S).
+We use extra space for the memoization table.
